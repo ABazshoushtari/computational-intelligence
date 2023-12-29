@@ -1,6 +1,9 @@
 import numpy as np
 
 from rsdl import Tensor
+from rsdl.activations import Softmax
+from rsdl.tensors import _tensor_neg
+
 
 def MeanSquaredError(preds: Tensor, actual: Tensor):
     # TODO : implement mean squared error
@@ -11,7 +14,8 @@ def MeanSquaredError(preds: Tensor, actual: Tensor):
 
 def CategoricalCrossEntropy(preds: Tensor, actual: Tensor):
     # TODO : implement categorical cross entropy
-    return None
-
-
-
+    softmax = Softmax(preds)
+    log_softmax = softmax.log()
+    mul = actual * log_softmax
+    ce = _tensor_neg(mul.sum())
+    return ce
