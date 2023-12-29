@@ -1,9 +1,10 @@
 # Task 5
 import numpy as np
+from keras.optimizers import RMSprop
 
 from rsdl import Tensor
 from rsdl.layers import Linear
-from rsdl.optim import SGD
+from rsdl.optim import SGD, Adam, Momentum, RMSprop
 from rsdl.losses import loss_functions
 
 X = Tensor(np.random.randn(100, 3))
@@ -15,12 +16,15 @@ l = Linear(in_channels=3, out_channels=1, need_bias=True)
 
 # TODO: define an optimizer using SGD() class 
 optimizer = SGD([l], learning_rate=0.01)
+# optimizer = Adam([l], learning_rate=0.1)
+# optimizer = Momentum([l], learning_rate=0.01)
+# optimizer = RMSprop([l], learning_rate=0.1)
 
 # TODO: print weight and bias of linear layer
 print(l.weight)
 print(l.bias)
 
-learning_rate = 0.01
+# learning_rate = 0.01
 batch_size = 10
 
 for epoch in range(90):
