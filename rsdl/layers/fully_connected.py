@@ -9,19 +9,22 @@ class Linear:
         self.need_bias = need_bias
         # TODO initialize weight by initializer function (mode)
         self.weight = Tensor(
-            data=None,
-            requires_grad=None
+            data=initializer(self.shape, mode),
+            requires_grad=True
         )
         # TODO initialize weight by initializer function (zero mode)
         if self.need_bias:
             self.bias = Tensor(
-                data=None,
-                requires_grad=None
+                data=initializer((1, out_channels), "zero"),
+                requires_grad=True
             )
 
     def forward(self, inp):
         # TODO:implement forward propagation
-        return None
+        output = inp @ self.weight
+        if self.need_bias:
+            output = output + self.bias
+        return output
     
     def parameters(self):
         
