@@ -1,6 +1,6 @@
 # Task 5
 import numpy as np
-from keras.optimizers import RMSprop
+# from keras.optimizers import RMSprop
 
 from rsdl import Tensor
 from rsdl.layers import Linear
